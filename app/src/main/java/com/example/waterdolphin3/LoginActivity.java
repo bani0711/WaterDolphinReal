@@ -62,8 +62,8 @@ TextView tvLostPw, tvJoin;
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int colorPrimary = getResources().getColor(R.color.colorPrimary);
-                btnLogin.setBackgroundColor(colorPrimary);
+                //int colorPrimary = getResources().getColor(R.color.colorPrimary);
+                //btnLogin.setBackgroundColor(colorPrimary);
 
                 //서버 연동하면 수정 부탁
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
