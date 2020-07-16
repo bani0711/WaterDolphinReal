@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.util.Linkify;
 import android.view.KeyEvent;
@@ -65,7 +66,6 @@ TextView tvLostPw, tvJoin;
                 //int colorPrimary = getResources().getColor(R.color.colorPrimary);
                 //btnLogin.setBackgroundColor(colorPrimary);
 
-                //서버 연동하면 수정 부탁
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -79,23 +79,49 @@ TextView tvLostPw, tvJoin;
         }
 
         //비번 찾기 및 회원가입 하이퍼링크 구현
-        String textIdPw = "비밀번호를 잊으셨나요?";
-        String join = "회원가입하기";
+//        String textIdPw = "비밀번호를 잊으셨나요?";
+//        String join = "회원가입하기";
+//
+//        tvLostPw.setText(textIdPw);
+//        tvJoin.setText(join);
+//
+//        Linkify.TransformFilter mTransform = new Linkify.TransformFilter() {
+//            @Override
+//            public String transformUrl(Matcher match, String url) {
+//                return "";
+//            }
+//        };
+//
+//        Pattern pattern1 = Pattern.compile("비밀번호를 잊으셨나요?");
+//        Pattern pattern2 = Pattern.compile("회원가입하기");
+//
+//        Linkify.addLinks(tvLostPw, pattern1, "http://www.naver.com/", null, mTransform);
+//        Linkify.addLinks(tvJoin, pattern2, "http://www.naver.com/", null, mTransform);
 
-        tvLostPw.setText(textIdPw);
-        tvJoin.setText(join);
+        //텍스트뷰 밑줄 설정
+        tvLostPw.setPaintFlags(tvLostPw.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        tvJoin.setPaintFlags(tvJoin.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        Linkify.TransformFilter mTransform = new Linkify.TransformFilter() {
+        //텍스트뷰 인텐트 연결
+        //비밀번호 찾기 인텐트 연결
+        tvLostPw.setOnClickListener(new View.OnClickListener() {
             @Override
-            public String transformUrl(Matcher match, String url) {
-                return "";
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ResetPWActivity.class);
+                startActivity(intent);
+                finish();
             }
-        };
+        });
 
-        Pattern pattern1 = Pattern.compile("비밀번호를 잊으셨나요?");
-        Pattern pattern2 = Pattern.compile("회원가입하기");
+        //회원가입하기 인텐트 연결 (수정요망)
+        tvJoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(),수정해야함Activity.class);
+//                startActivity(intent);
+//                finish();
+            }
+        });
 
-        Linkify.addLinks(tvLostPw, pattern1, "http://www.naver.com/", null, mTransform);
-        Linkify.addLinks(tvJoin, pattern2, "http://www.naver.com/", null, mTransform);
     }
 }
